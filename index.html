@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10th Class Reunion | ZPHS Panduru 2017-2018</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+            background: url('./cracker.gif'), linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            background-size: cover;
+        }
+        .header {
+            background: linear-gradient(90deg, #ffcc00, #ff9900);
+            padding: 20px;
+            color: #2c3e50;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            animation: fadeInDown 1s ease-in-out;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: normal;
+        }
+        .container {
+            padding: 20px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        .details {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            animation: zoomIn 1s ease-in-out;
+        }
+        .details h2 {
+            color: #ffcc00;
+        }
+        .respond-btn {
+            display: inline-block;
+            background: #ff5733;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 15px;
+            transition: 0.3s;
+            font-weight: bold;
+            animation: bounce 2s infinite;
+        }
+        .respond-btn:hover {
+            background: #e74c3c;
+            transform: scale(1.05);
+        }
+        .footer {
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 16px;
+        }
+        #countdown {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #f3311b;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .container1 {
+            padding: 20px;
+        }
+        .upload-btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .gallery img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        /* Popup Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .popup img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+        .popup span {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>10th Class Reunion</h1>
+        <h2>Panduru 2017-2018</h2>
+    </div>
+    <div class="container">
+        <div class="details">
+            <h2>You're Invited! 🎉</h2>
+            <p><strong>📅 Date:</strong> March 23, 2025</p>
+            <p><strong>⏰ Time:</strong> 9:00 AM</p>
+            <p><strong>📍 Venue:</strong> Will update soon</p>
+            <div id="countdown"></div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSePXR8tDgwsACuWbRVqr08K74F0QeTHtbCHT5ywDEzjFkEzoA/viewform?usp=dialog " class="respond-btn" target="_blank">Respond Now</a>
+        </div>
+    </div>
+    <div class="container1">
+        <label for="imageUpload" class="upload-btn">Upload Image</label>
+        <input type="file" id="imageUpload" accept="image/*">
+        <div class="gallery" id="gallery"></div>
+    </div>
+
+    <!-- Popup for viewing images -->
+    <div class="popup" id="popup">
+        <span onclick="closePopup()">×</span>
+        <img id="popupImg">
+    </div>
+    <div class="footer">Let’s make unforgettable memories together! 📸</div>
+    <script>
+        function updateCountdown() {
+            const eventDate = new Date("March 23, 2025 09:00:00").getTime();
+            const now = new Date().getTime();
+            const timeLeft = eventDate - now;
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById("countdown").innerHTML = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            
+            if (timeLeft < 0) {
+                document.getElementById("countdown").innerHTML = "The event has started!";
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        const imageUpload = document.getElementById('imageUpload');
+        const gallery = document.getElementById('gallery');
+        const popup = document.getElementById('popup');
+        const popupImg = document.getElementById('popupImg');
+
+        // Load images from local storage
+        function loadImages() {
+            gallery.innerHTML = "";
+            const images = JSON.parse(localStorage.getItem('uploadedImages')) || [];
+            images.forEach(src => displayImage(src));
+        }
+
+        // Display images in gallery
+        function displayImage(src) {
+            const img = document.createElement('img');
+            img.src = src;
+            img.onclick = () => openPopup(src);
+            gallery.appendChild(img);
+        }
+
+        // Handle file upload
+        imageUpload.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    let images = JSON.parse(localStorage.getItem('uploadedImages')) || [];
+                    images.push(e.target.result);
+                    localStorage.setItem('uploadedImages', JSON.stringify(images));
+                    displayImage(e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Open popup
+        function openPopup(src) {
+            popup.style.display = "flex";
+            popupImg.src = src;
+        }
+
+        // Close popup
+        function closePopup() {
+            popup.style.display = "none";
+        }
+
+        // Load stored images on page load
+        window.onload = loadImages;
+        
+    </script>
+</body>
+</html>
